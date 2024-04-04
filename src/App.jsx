@@ -52,7 +52,26 @@ const App = () => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   };
 
-
+  useEffect(() => {
+    if (choiceOne && choiceTwo) {
+      if (choiceOne.src === choiceTwo.src) {
+        setCards((prevCard) => {
+          return prevCard.map((card) => {
+            if (card.src === choiceTwo.src) {
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
+        resetTurns();
+      } else {
+        setTimeout(() => {
+          resetTurns();
+        }, 1000);
+      }
+    }
+  }, [choiceOne, choiceTwo]);
 
   console.log(cards);
 
