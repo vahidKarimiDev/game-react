@@ -1,9 +1,9 @@
 import React from "react";
 import "./SingelCards.css";
 
-const SingelCards = ({ card, handelChoice, flipped }) => {
+const SingelCards = ({ card, handelChoice, flipped, disabled }) => {
   const handelClick = () => {
-    handelChoice(card);
+    !disabled && handelChoice(card);
   };
 
   return (
